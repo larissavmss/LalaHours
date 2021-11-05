@@ -7,8 +7,6 @@ import '../styles/Button.scss';
 import { UserContext } from '../routes/router';
 import { useContext, FormEvent } from 'react';
 
-import { database } from '../services/firebase';
-import {ref, set } from "firebase/database"
 
 export function NewRoom(){
     const {user, setUser} = useContext(UserContext);
@@ -18,10 +16,6 @@ export function NewRoom(){
         if (user == null || room == null){
             throw new Error('Missing information to enter a Room');
         }
-        set(ref(database, 'rooms/' + room), {
-            title: room,
-            authorId: user,
-        });
     }
 
     function getUser(val:any){
